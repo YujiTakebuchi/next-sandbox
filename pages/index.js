@@ -1,12 +1,10 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 
-// FIXME: クライアントサイドでfsが呼ばれてしまう
 import { getSortedPostsData } from "../lib/posts";
 
 import utilStyles from "../styles/utils.module.css";
 
-// FIXME: クライアントサイドでfsが呼ばれてしまう
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   return {
@@ -30,7 +28,6 @@ export default function Home({ allPostsData }) {
         </p>
       </section>
 
-      {/* FIXME: クライアントサイドでfsが呼ばれてしまう */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
