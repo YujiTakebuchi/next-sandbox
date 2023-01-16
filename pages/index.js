@@ -14,7 +14,17 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPostsData }) {
+// getStaticPropsとの併用はできない
+// export async function getServerSideProps() {
+//   const allPostsData = getSortedPostsData();
+//   return {
+//     props: {
+//       allPostsDataSSR,
+//     },
+//   };
+// }
+
+export default function Home({ allPostsData, allPostsDataSSR }) {
   return (
     <Layout home>
       <Head>
@@ -30,6 +40,7 @@ export default function Home({ allPostsData }) {
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h3>SSG</h3>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
@@ -41,6 +52,19 @@ export default function Home({ allPostsData }) {
             </li>
           ))}
         </ul>
+        {/* getStaticPropsとの併用はできない */}
+        {/* <h3>SSR</h3>
+        <ul className={utilStyles.list}>
+          {allPostsDataSSR.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+              {title}
+              <br />
+              {id}
+              <br />
+              {date}
+            </li>
+          ))}
+        </ul> */}
       </section>
     </Layout>
   );
