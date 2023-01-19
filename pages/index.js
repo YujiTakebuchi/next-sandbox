@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Link from "next/link";
+import Date from "../components/date";
 import Layout, { siteTitle } from "../components/layout";
 
 import { getSortedPostsData } from "../lib/posts";
@@ -42,15 +44,17 @@ export default function Home({ allPostsData, allPostsDataSSR }) {
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <h3>SSG</h3>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date}
-            </li>
-          ))}
+          {allPostsData.map(({ id, date, title }) => {
+            return (
+              <li className={utilStyles.listItem} key={id}>
+                <Link href={`/posts/${id}`}>{title}</Link>
+                <br />
+                <small className={utilStyles.lightText}>
+                  <Date dateString={date} />
+                </small>
+              </li>
+            );
+          })}
         </ul>
         {/* getStaticPropsとの併用はできない */}
         {/* <h3>SSR</h3>
