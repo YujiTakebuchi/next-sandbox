@@ -26,7 +26,7 @@
 }
 
 .borderCircle {
-  border-radius: 9999px;
+  clip-path: circle(200px at 50% 50%);
 }
 
 .colorInherit {
